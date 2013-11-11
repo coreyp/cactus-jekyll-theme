@@ -15,12 +15,18 @@
 <div id="content">
   <div class="inner-content">
     <div class="cols">
-      <div class="col"><h3>Latest Reporters' Registry Requests</h3>
-        <em>Send requests <a href="#">here</a>. Donate below. <a href="/registry">More</a></em>
-      <h2><a href="http://nnn.local/room/requests/historical-papers-from-cleveland-ohio-library/">Historical papers from Cleveland, Ohio library</a></h2>Documents are unavailable from online sources and require in-person pickup. Cost includes estimated time commitment of one hour and estimated copying fees.<p><a href="#" class="button"><strong>Volunteer</strong></a> or     <style>    .donate-loading {        width: 24px;        height: 24px;        background: url(&#039;http://nnn.local/room/wp-content/plugins/stripe-donations/images/loading.gif&#039;) no-repeat;    }    </style>    <script>    (function($) {        $(function() {            $(&#039;.stripe-button&#039;).bind(&#039;token&#039;, function(e, token) {                var data = {                    &#039;action&#039;: &#039;ssd_submit_payment&#039;,                    &#039;token&#039;: token.id,                    &#039;amount&#039;: $(this).attr(&#039;data-amount&#039;)                };                $(&#039;.stripe-button-inner&#039;).hide();                $(&#039;.donate-response&#039;).html(&#039;<div class="donate-loading"></div>&#039;);                $.post(&#039;http://nnn.local/room/wordpress/wp-admin/admin-ajax.php&#039;, data, function(response) {                    $(&#039;.donate-response&#039;).html(response);                });            });        });    })(jQuery);    </script>    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"         data-key="pk_test_x5K9Y4jaEfQdQEqEGLckNr50"        data-amount="3500"data-name="No Noise News"data-description="Good work costs money."data-label="Donate"data-panel-label="Give"></script>        <div class="donate-response"></div>
-
-<h2><a href="http://nnn.local/room/requests/help-me-out-bro/">Help me out bro </a></h2> <p><a href="#" class="button"><strong>Volunteer</strong></a> or     <style>    .donate-loading {        width: 24px;        height: 24px;        background: url(&#039;http://nnn.local/room/wp-content/plugins/stripe-donations/images/loading.gif&#039;) no-repeat;    }    </style>    <script>    (function($) {        $(function() {            $(&#039;.stripe-button&#039;).bind(&#039;token&#039;, function(e, token) {                var data = {                    &#039;action&#039;: &#039;ssd_submit_payment&#039;,                    &#039;token&#039;: token.id,                    &#039;amount&#039;: $(this).attr(&#039;data-amount&#039;)                };                $(&#039;.stripe-button-inner&#039;).hide();                $(&#039;.donate-response&#039;).html(&#039;<div class="donate-loading"></div>&#039;);                $.post(&#039;http://nnn.local/room/wordpress/wp-admin/admin-ajax.php&#039;, data, function(response) {                    $(&#039;.donate-response&#039;).html(response);                });            });        });    })(jQuery);    </script>    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"         data-key="pk_test_x5K9Y4jaEfQdQEqEGLckNr50"        data-amount="2000"data-name="No Noise News"data-description="Good work costs money."data-label="Donate"data-panel-label="Give"></script>        <div class="donate-response"></div>    </p>
-
+      <div class="col"><h3><a href="/registry">Latest Reporters' Registry Request</a></h3>
+        {% for post in site.posts limit:1 %}
+    <article>
+      <header>
+        <h2><a href="{% unless site.baseurl == "/" %}{{ site.baseurl }}{% endunless %}{{ post.url }}">{{ post.title }}</a></h2>
+      </header>
+      <div class="entry-content">
+        {{ post.content }}
+      </div>
+    </article>
+    {% endfor %}
+    
       </div>
       <!-- <div class="col">
         <ul class="bordered-list">
@@ -38,10 +44,10 @@
       </div> -->
       <div class="col"> 
         <h3>Institute for the Discovery of Buried Leads</h3>
-        <em>Suggestions <a href="#">here</a></em>
         <div id="google_feeds"></div>
+        
         <h3><a href="/room/">No Noise News/room</a></h3>
-        <em>A members-only area for collaborative investigations. <a href="#">Join</a></em>
+        <em>A members-only area for collaborative investigations.</em>
         
         <!-- <br/>
         <h3>Initial setup</h3>

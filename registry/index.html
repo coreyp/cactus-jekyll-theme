@@ -1,11 +1,53 @@
 ---
   layout: base
-  title: Requests
+  title: Blog
 ---
-<div id="content">
 
-Title   Permlink    Content Custom Fields
-Historical papers from Cleveland, Ohio library  http://nnn.local/room/requests/historical-papers-from-cleveland-ohio-library/   <p><a href="#" class="button"><strong>Volunteer</strong></a> or     <style>    .donate-loading {        width: 24px;        height: 24px;        background: url(&#039;http://nnn.local/room/wp-content/plugins/stripe-donations/images/loading.gif&#039;) no-repeat;    }    </style>    <script>    (function($) {        $(function() {            $(&#039;.stripe-button&#039;).bind(&#039;token&#039;, function(e, token) {                var data = {                    &#039;action&#039;: &#039;ssd_submit_payment&#039;,                    &#039;token&#039;: token.id,                    &#039;amount&#039;: $(this).attr(&#039;data-amount&#039;)                };                $(&#039;.stripe-button-inner&#039;).hide();                $(&#039;.donate-response&#039;).html(&#039;<div class="donate-loading"></div>&#039;);                $.post(&#039;http://nnn.local/room/wordpress/wp-admin/admin-ajax.php&#039;, data, function(response) {                    $(&#039;.donate-response&#039;).html(response);                });            });        });    })(jQuery);    </script>    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"         data-key="pk_test_x5K9Y4jaEfQdQEqEGLckNr50"        data-amount="3500"data-name="No Noise News"data-description="Good work costs money."data-label="Donate"data-panel-label="Give"></script>        <div class="donate-response"></div>    Documents are unavailable from online sources and require in-person pickup. Cost includes estimated time commitment of one hour and estimated copying fees.</p>   est_cost => 35. est_deadline => 20131231. est_time => 1. nnn_rights => Yes. project_status => reporting. request_status => incomplete. requester => Corey Pein. requester_email => publicpein@airpost.net. requester_phone => . work_location => Cleveland, Ohio public library 
-Help me out bro http://nnn.local/room/requests/help-me-out-bro/ <p><a href="#" class="button"><strong>Volunteer</strong></a> or     <style>    .donate-loading {        width: 24px;        height: 24px;        background: url(&#039;http://nnn.local/room/wp-content/plugins/stripe-donations/images/loading.gif&#039;) no-repeat;    }    </style>    <script>    (function($) {        $(function() {            $(&#039;.stripe-button&#039;).bind(&#039;token&#039;, function(e, token) {                var data = {                    &#039;action&#039;: &#039;ssd_submit_payment&#039;,                    &#039;token&#039;: token.id,                    &#039;amount&#039;: $(this).attr(&#039;data-amount&#039;)                };                $(&#039;.stripe-button-inner&#039;).hide();                $(&#039;.donate-response&#039;).html(&#039;<div class="donate-loading"></div>&#039;);                $.post(&#039;http://nnn.local/room/wordpress/wp-admin/admin-ajax.php&#039;, data, function(response) {                    $(&#039;.donate-response&#039;).html(response);                });            });        });    })(jQuery);    </script>    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"         data-key="pk_test_x5K9Y4jaEfQdQEqEGLckNr50"        data-amount="2000"data-name="No Noise News"data-description="Good work costs money."data-label="Donate"data-panel-label="Give"></script>        <div class="donate-response"></div>    </p>  est_cost => 2000. est_deadline => 20131122. est_time => 0. nnn_rights => Maybe. project_status => research. reimbursement_status => no. request_status => incomplete. requester => Anonymous Reporter. requester_email => cantstop@me.com. requester_phone => . target_venue => . work_location => Planet Mercury   
+<div class="page-title-bar">
+  <div class="inner-content">
+    <h2>Reporters' Registry</h2>
+  </div>
+</div>
 
+<div id="blog">
+  <div id="blog-content">
+    {% for post in site.posts %}
+    <article>
+      <header>
+        <p>Posted {{ post.date | date: "%B %d, %Y" }}</p>
+        <h1><a href="{% unless site.baseurl == "/" %}{{ site.baseurl }}{% endunless %}{{ post.url }}">{{ post.title }}</a></h1><br/>
+      </header>
+      <div class="entry-content">
+        {{ post.content }}
+      </div>
+    </article>
+    {% endfor %}
+  
+    {% if paginator.page %}
+    <div id="paginator" class="content">
+      {% if paginator.next_page %}
+      <a href="/page{{ paginator.next_page }}/">Older entries</a>
+      {% endif %}
+      {% if paginator.previous_page %}
+      <a href="/page{{ paginator.previous_page }}/">Newer entries</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+  <div id="blog-nav">
+    <h4>Welcome to the {X} blog</h4>
+    <p>The latest and greatest on {X}. <a href="https://twitter.com/your-handle">Follow us on Twitter</a> or <a href="http://yourdomain.com/atom.xml">subscribe the RSS feed</a> for updates.</p>
+
+    <h4>Post archive</h4>
+    <ul class="bordered-list">
+      {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <span class="date">{{ post.date | date: "%d-%m-%Y" }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div>
 </div>
